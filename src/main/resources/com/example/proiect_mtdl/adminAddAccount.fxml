@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.AdminAddAccountController">
+   <top>
+      <AnchorPane prefHeight="121.0" prefWidth="496.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="160.0" fitWidth="200.0" layoutX="271.0">
+               <image>
+                  <Image url="@../../../images/logo.jpeg" />
+               </image>
+            </ImageView>
+            <Button layoutX="30.0" layoutY="59.0" mnemonicParsing="false" onAction="#onClickBack" prefHeight="42.0" prefWidth="81.0" text="Back">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="first_name" layoutX="66.0" layoutY="58.0" prefHeight="29.0" prefWidth="224.0" promptText="First Name">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="email" layoutX="66.0" layoutY="102.0" prefHeight="29.0" prefWidth="224.0" promptText="Email">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="university" layoutX="66.0" layoutY="236.0" prefHeight="29.0" prefWidth="224.0" promptText="University">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="password" layoutX="66.0" layoutY="147.0" prefHeight="29.0" prefWidth="224.0" promptText="Password">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="userType" layoutX="66.0" layoutY="190.0" prefHeight="29.0" prefWidth="224.0" promptText="User Type ">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="uni_year" layoutX="66.0" layoutY="280.0" prefHeight="29.0" prefWidth="224.0" promptText="Year">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="last_name" layoutX="66.0" layoutY="14.0" prefHeight="29.0" prefWidth="224.0" promptText="Last Name">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="specialisation" layoutX="66.0" layoutY="323.0" prefHeight="29.0" prefWidth="224.0" promptText="Specialisation">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="uni_group" layoutX="66.0" layoutY="365.0" prefHeight="29.0" prefWidth="224.0" promptText="Group">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="degree" layoutX="66.0" layoutY="407.0" prefHeight="29.0" prefWidth="224.0" promptText="Degree">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <AnchorPane prefHeight="441.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutY="405.0" mnemonicParsing="false" onAction="#onClickAddAccount" prefHeight="42.0" prefWidth="111.0" text="Add Account">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </right>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea editable="false" layoutX="8.0" layoutY="47.0" prefHeight="269.0" prefWidth="190.0" style="-fx-background-color: a66;" text="  Please fill all following sections&#10;with the correct data, otherwise&#10; there will be an error.&#10;  If the user is a student, then&#10;the following sections don't&#10;need to be completed: Degree.&#10;  If the user is a teacher, then &#10;the following sections dont't &#10;need to be completed: Year, &#10;Group, Specialisation.">
+               <font>
+                  <Font name="Calibri Light" size="13.0" />
+               </font>
+            </TextArea>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

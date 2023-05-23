@@ -2,35 +2,39 @@ package com.example.proiect_mtdl;
 
 import java.util.GregorianCalendar;
 
-public class Professeur extends User{
+public class Teacher extends User{
 
-    private String niveau;
+    private String degree;
 
-    public Professeur(String nom, String prenom, String email, String mot_passe, String faculte, String user_type) {
-        super(nom, prenom, email, mot_passe, faculte, user_type);
-        this.niveau = niveau;
+    public Teacher(int id,String last_name, String first_name, String email, String password, String university, String userType) {
+        super(id, last_name, first_name, email, password, university, userType);
+        this.degree = degree;
     }
 
-    public String getNiveau() {
-        return niveau;
+    public Teacher(int id, String email, String first_name, String last_name, String userType) {
+        super(id, email, first_name, last_name, userType);
     }
 
-    public void setNiveau(String niveau) {
-        this.niveau = niveau;
+    public String getDegree() {
+        return degree;
     }
 
-    public void addEtudiant(int idcours, Etudiant etudiant){
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public void addEtudiant(int idcours, Student student){
         for (int i=0; i<getCourses().size()-1;i++){
             if (getCourses().get(i).getId() == idcours){
-                getCourses().get(i).addEtudiant(etudiant);
+                getCourses().get(i).addEtudiant(student);
             }
         }
     }
 
-    public void removeEtudiant(int idcours, Etudiant etudiant){
+    public void removeEtudiant(int idcours, Student student){
         for (int i=0; i<getCourses().size()-1;i++){
             if (getCourses().get(i).getId() == idcours){
-                getCourses().get(i).removeEtudiant(etudiant);
+                getCourses().get(i).removeEtudiant(student);
             }
         }
     }
@@ -53,11 +57,11 @@ public class Professeur extends User{
         }
     }
 
-    public void addTache(int idcours, Tache tache){
+    public void addTache(int idcours, Assignment assignment){
 
         for (int i=0; i<getCourses().size()-1;i++){
             if (getCourses().get(i).getId() == idcours){
-                getCourses().get(i).addTache(tache);
+                getCourses().get(i).addTache(assignment);
             }
         }
     }

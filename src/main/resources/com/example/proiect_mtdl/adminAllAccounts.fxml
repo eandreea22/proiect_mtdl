@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-   fx:controller="com.example.proiect_mtdl.AdminAllAccountsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.AdminAllAccountsController">
    <top>
       <AnchorPane prefHeight="150.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,22 +21,22 @@
                   <Image url="@../../../images/logo.jpeg" />
                </image>
             </ImageView>
-            <Button layoutX="23.0" layoutY="21.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="81.0" text="Back">
+            <Button layoutX="23.0" layoutY="21.0" mnemonicParsing="false" onAction="#onClickBack" prefHeight="42.0" prefWidth="81.0" text="Back">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="23.0" layoutY="80.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="81.0" text="Logout">
+            <Button layoutX="23.0" layoutY="80.0" mnemonicParsing="false" onAction="#onClickLogout" prefHeight="42.0" prefWidth="81.0" text="Logout">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="660.0" layoutY="21.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="126.0" text="Add Account">
+            <Button layoutX="660.0" layoutY="21.0" mnemonicParsing="false" onAction="#onClickAddAccount" prefHeight="42.0" prefWidth="126.0" text="Add Account">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="660.0" layoutY="80.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="126.0" text="Delete Account">
+            <Button layoutX="660.0" layoutY="80.0" mnemonicParsing="false" onAction="#onClickDeleteAccount" prefHeight="42.0" prefWidth="126.0" text="Delete Account">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -50,13 +49,13 @@
          <children>
             <ScrollPane layoutX="94.0" layoutY="41.0" prefHeight="251.0" prefWidth="611.0">
                <content>
-                  <TableView prefHeight="250.0" prefWidth="473.0" fx:id="table">
+                  <TableView fx:id="table" prefHeight="250.0" prefWidth="594.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="UserId" />
-                      <TableColumn prefWidth="75.0" text="Email" />
-                        <TableColumn prefWidth="75.0" text="First name" />
-                        <TableColumn prefWidth="75.0" text="Last name" />
-                       <TableColumn prefWidth="75.0" text="User Type" />
+                      <TableColumn fx:id="UserId" prefWidth="54.66665017604828" text="UserId" />
+                      <TableColumn fx:id="Email" prefWidth="172.00001907348633" text="Email" />
+                        <TableColumn fx:id="FirstName" minWidth="0.0" prefWidth="124.66667175292969" text="First name" />
+                        <TableColumn fx:id="LastName" minWidth="0.0" prefWidth="130.66659545898438" text="Last name" />
+                       <TableColumn fx:id="userType" minWidth="0.0" prefWidth="110.66671752929688" text="User Type" />
                     </columns>
                   </TableView>
                </content>
@@ -76,8 +75,7 @@
                   <Font name="Calibri Light" size="16.0" />
                </font>
             </TextField>
-            <Button layoutX="704.0" layoutY="266.0" mnemonicParsing="false" text="Load users"
-               onAction="#onClickLoadUsers">
+            <Button layoutX="704.0" layoutY="266.0" mnemonicParsing="false" onAction="#onClickLoadUsers" text="Load users">
                <font>
                   <Font name="Calibri Light" size="13.0" />
                </font>

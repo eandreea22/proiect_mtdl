@@ -3,37 +3,37 @@ package com.example.proiect_mtdl;
 
 import java.util.GregorianCalendar;
 
-public class Tache {
+public class Assignment {
 
     private int id = 0;
-    private String nom;
-    private String domaine;
+    private String name;
+    private String demand;
     private GregorianCalendar deadline;
     private String submit;
 
-    public Tache(String nom) {
+    public Assignment(String name) {
         this.id++;
-        this.nom = nom;
+        this.name = name;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDomaine() {
-        return domaine;
+    public String getDemand() {
+        return demand;
     }
 
-    public void setDomaine(String domaine) {
-        this.domaine = domaine;
+    public void setDemand(String demand) {
+        this.demand = demand;
     }
 
     public GregorianCalendar getDeadline() {
