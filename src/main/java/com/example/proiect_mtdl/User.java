@@ -15,6 +15,8 @@ public abstract class User {
     private ArrayList<Notes> notes = new ArrayList<Notes>();
     private String userType;
 
+    public User() {
+    }
 
     public User(int id, String last_name, String first_name, String email, String password, String university, String userType) {
 
@@ -102,5 +104,7 @@ public abstract class User {
         notes.add(note);
     }
 
-    
+    public void setId(int id) {
+        this.id = id;
+    }
 }

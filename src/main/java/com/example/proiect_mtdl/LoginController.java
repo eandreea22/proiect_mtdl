@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,6 +27,9 @@ public class LoginController {
     private TextField email_login;
     @FXML
     private TextField password_login;
+
+    private Teacher teacher;
+    DataSingleton data = DataSingleton.getInstance();
 
 
     @FXML
@@ -69,7 +73,18 @@ public class LoginController {
                     TeacherController teacherController = fxmlLoader.getController();
                     teacherController.createTeacher(email_login.getText(), password_login.getText());
 
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    int id = Integer.parseInt(resultSet2.getString("id"));
+                    String first_name = resultSet2.getString("first_name");
+                    String last_name = resultSet2.getString("last_name");
+                    String university = resultSet2.getString("university");
+                    String degree = resultSet2.getString("degree");
+
+                    teacher = new Teacher(id, last_name, first_name, email_login.getText(), password_login.getText(), university,"teacher", degree);
+
+                    data.setTeacher(teacher);
+
+                    //stage = (Stage)((Node)event.getSource())teacher.getScene().getWindow();
+                    //stage = (Stage) teacher.getScene().getWindow();
                     scene = new Scene(root);
                     stage.setTitle("Teacher Main Page");
                     stage.setScene(scene);

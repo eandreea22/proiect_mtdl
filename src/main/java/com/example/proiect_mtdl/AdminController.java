@@ -54,7 +54,7 @@ public class AdminController {
     }
 
     @FXML
-    public void onClickLogout() throws IOException {
+    public void onClickLogout(){
         Platform.exit();
         System.exit(0);
     }
@@ -292,7 +292,7 @@ public class AdminController {
 
         if(password_modifyAccount.getText().isEmpty() == false){
             statement.executeUpdate("update users " +
-                    "set password_modifyAccount='" + password_modifyAccount.getText() + "' where id=" +
+                    "set password='" + password_modifyAccount.getText() + "' where id=" +
                     Integer.parseInt(userId_modifyAccount.getText()) + ";" );
         }
         password_modifyAccount.clear();

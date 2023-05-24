@@ -5,9 +5,13 @@ import java.util.GregorianCalendar;
 public class Teacher extends User{
 
     private String degree;
+    private Teacher teacher;
+
+    public Teacher() {
+    }
 
 
-    public Teacher(int id,String last_name, String first_name, String email, String password, String university, String userType, String degree) {
+    public Teacher(int id, String last_name, String first_name, String email, String password, String university, String userType, String degree) {
         super(id, last_name, first_name, email, password, university, userType);
         this.degree = degree;
     }
@@ -75,5 +79,6 @@ public class Teacher extends User{
             }
         }
     }
+
 
 }

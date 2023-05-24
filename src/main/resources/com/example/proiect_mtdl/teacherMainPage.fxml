@@ -28,8 +28,8 @@
                   <Font name="Calibri Light" size="14.5" />
                </font>
             </Label>
-            <ImageView fx:id="profilePhtot" fitHeight="71.0" fitWidth="76.0" layoutX="582.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="54.33333333333334" AnchorPane.leftAnchor="582.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="14.0" />
-            <Button layoutX="563.0" layoutY="90.0" mnemonicParsing="false" text="Manage Account">
+            <ImageView fx:id="profilePhoto" fitHeight="71.0" fitWidth="76.0" layoutX="582.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="54.33333333333334" AnchorPane.leftAnchor="582.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="14.0" />
+            <Button layoutX="563.0" layoutY="90.0" mnemonicParsing="false" onAction="#onClickManageAccount" text="Manage Account">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
