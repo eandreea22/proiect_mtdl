@@ -1,9 +1,12 @@
 package com.example.proiect_mtdl;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -15,19 +18,21 @@ import java.sql.*;
 
 public class LoginController {
 
+    private Stage stage;
+    private Parent root;
+    private Scene scene;
 
     @FXML
-    private TextField email;
+    private TextField email_login;
+    @FXML
+    private TextField password_login;
+
 
     @FXML
-    private TextField password;
+    protected void onLoginClick(ActionEvent event) throws SQLException, IOException {
 
 
-    @FXML
-    protected void onLoginClick() throws SQLException, IOException {
-
-
-        if (email.getText().equals("admin") && password.getText().equals("admin")){
+        if (email_login.getText().equals("admin") && password_login.getText().equals("admin")){
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(FirstOne.class.getResource("adminMainPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 300, 463);
@@ -41,19 +46,38 @@ public class LoginController {
             Statement statement = conn.createStatement();
 
             ResultSet resultSet2 = statement.executeQuery("select * from users " +
-                    "where email='"  + email.getText() + "' " +
-                    "and password='" + password.getText() + "';");
+                    "where email='"  + email_login.getText() + "' " +
+                    "and password='" + password_login.getText() + "';");
 
             while (resultSet2.next()){
-                System.out.println("ok");
+
+                if (resultSet2.getString("userType").equals("student")){
+
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("studentMainPage.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load(), 300, 463);
+                    stage.setTitle("Student Main Page");
+                    stage.setScene(scene);
+                    stage.show();
+
+                } else if (resultSet2.getString("userType").equals("teacher")) {
+
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("teacherMainPage.fxml"));
+                    root = fxmlLoader.load();
+
+                    TeacherController teacherController = fxmlLoader.getController();
+                    teacherController.createTeacher(email_login.getText(), password_login.getText());
+
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setTitle("Teacher Main Page");
+                    stage.setScene(scene);
+                    stage.show();
+                }
             }
         }
 
-
-
-
-
     }
-
 
 }

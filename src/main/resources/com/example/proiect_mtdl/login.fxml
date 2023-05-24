@@ -33,13 +33,13 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
             <TextField id="email" onAction="#onLoginClick" layoutX="97.0" layoutY="28.0" prefHeight="39.0" prefWidth="201.0" promptText="Email"
-                fx:id="email">
+                fx:id="email_login">
                <font>
                   <Font name="Calibri Light" size="13.0" />
                </font>
             </TextField>
             <TextField id="password" onAction="#onLoginClick" layoutX="97.0" layoutY="81.0" prefHeight="39.0" prefWidth="201.0" promptText="Password"
-                fx:id="password">
+                fx:id="password_login">
                <font>
                   <Font name="Calibri Light" size="13.0" />
                </font>

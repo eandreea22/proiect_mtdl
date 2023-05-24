@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.AdminController">
+   <top>
+      <AnchorPane prefHeight="127.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="160.0" fitWidth="200.0" layoutX="225.0">
+               <image>
+                  <Image url="@../../../images/logo.jpeg" />
+               </image>
+            </ImageView>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickBackAllCourses" prefHeight="42.0" prefWidth="81.0" text="Back">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="340.0" prefWidth="241.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea editable="false" layoutX="26.0" layoutY="14.0" prefHeight="127.0" prefWidth="189.0" style="-fx-background-color: a66;" text="  Please fill all following sections with the correct data, otherwise there will be an error.&#10;  In order to modify the page of cours we will need an cours id. &#10;" wrapText="true">
+               <font>
+                  <Font name="Calibri Light" size="13.0" />
+               </font>
+            </TextArea>
+            <ImageView fx:id="qrcodeImage" fitHeight="101.0" fitWidth="132.0" layoutX="55.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="63.0" layoutY="279.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="115.0" text="Show QR Code">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="340.0" prefWidth="423.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="coursIdModifyCours" layoutX="29.0" layoutY="12.0" promptText="Cours Id">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="199.0" layoutY="3.0" prefHeight="43.0" prefWidth="17.0" text="*" textFill="#d71d1d">
+               <font>
+                  <Font name="Calibri Light" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="photoModifyCours" layoutX="29.0" layoutY="110.0" prefHeight="27.0" prefWidth="198.0" promptText="Photo URL">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="qrcodeModifyCours" layoutX="29.0" layoutY="159.0" prefHeight="27.0" prefWidth="198.0" promptText="QR Code">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </TextField>
+            <TextArea editable="false" layoutX="33.0" layoutY="219.0" prefHeight="93.0" prefWidth="189.0" style="-fx-background-color: a66;" text="Note: The QR code will be generated based on a random text. &#10;e.g.: &quot;banana&quot;, &quot;blablabla&quot;" wrapText="true">
+               <font>
+                  <Font name="Calibri Light" size="13.0" />
+               </font>
+            </TextArea>
+            <Button layoutX="242.0" layoutY="108.0" mnemonicParsing="false" onAction="#onClickModifyPhotoModifyCours" prefHeight="31.0" prefWidth="131.0" text="Modify Photo URL">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="242.0" layoutY="157.0" mnemonicParsing="false" onAction="#onClickModifyQrCodeModifyCours" prefHeight="31.0" prefWidth="131.0" text="Modify QR Code">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <TextField fx:id="nameModifyCours" layoutX="29.0" layoutY="64.0" prefHeight="27.0" prefWidth="198.0" promptText="Cours Name">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </TextField>
+            <Button layoutX="242.0" layoutY="62.0" mnemonicParsing="false" onAction="#onClickModifyNameModifyCours" prefHeight="31.0" prefWidth="131.0" text="Modify Cours Name">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

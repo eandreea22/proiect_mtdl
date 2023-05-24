@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.AdminDeleteAccountController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.AdminController">
    <top>
       <AnchorPane prefHeight="106.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,7 +18,7 @@
                   <Image url="@../../../images/logo.jpeg" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickBack" prefHeight="42.0" prefWidth="81.0" text="Back">
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickBackAllAccounts" prefHeight="42.0" prefWidth="81.0" text="Back">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -29,7 +29,7 @@
    <center>
       <AnchorPane prefHeight="312.0" prefWidth="388.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="userId" layoutX="46.0" layoutY="141.0" prefHeight="29.0" prefWidth="123.0" promptText="User Id">
+            <TextField fx:id="userId_deleteAccount" layoutX="46.0" layoutY="141.0" prefHeight="29.0" prefWidth="123.0" promptText="User Id">
                <font>
                   <Font name="Calibri Light" size="16.0" />
                </font>
