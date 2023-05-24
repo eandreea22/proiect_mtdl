@@ -30,7 +30,7 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="565.0" layoutY="21.0" mnemonicParsing="false" onAction="#onClickAddCours" prefHeight="42.0" prefWidth="126.0" text="Add Cours">
+            <Button layoutX="565.0" layoutY="21.0" mnemonicParsing="false" onAction="#onClickAddCours2" prefHeight="42.0" prefWidth="126.0" text="Add Cours">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

@@ -111,7 +111,7 @@
    <right>
       <AnchorPane prefHeight="441.0" prefWidth="185.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="14.0" layoutY="415.0" mnemonicParsing="false" onAction="#onClickAddAccount" prefHeight="42.0" prefWidth="111.0" text="Add Account">
+            <Button layoutX="14.0" layoutY="415.0" mnemonicParsing="false" onAction="#onClickAddAccount2" prefHeight="42.0" prefWidth="111.0" text="Add Account">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

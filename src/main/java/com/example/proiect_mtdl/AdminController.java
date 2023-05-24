@@ -197,7 +197,7 @@ public class AdminController {
 
 
     @FXML
-    public void onClickAddAccount() throws SQLException {
+    public void onClickAddAccount2() throws SQLException {
 
 
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
@@ -432,7 +432,7 @@ public class AdminController {
 
     //
     @FXML
-    public void onClickAddCours(ActionEvent event) throws IOException{
+    public void onClickAddCours2(ActionEvent event) throws IOException{
 
         Parent root = FXMLLoader.load(getClass().getResource("adminAddCours.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
