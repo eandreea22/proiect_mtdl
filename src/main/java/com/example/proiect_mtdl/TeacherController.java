@@ -58,18 +58,11 @@ public class TeacherController implements Initializable {
             String university = resultSet2.getString("university");
             String degree = resultSet2.getString("degree");
 
-            teacher.setFirst_name(first_name);
-            teacher.setLast_name(last_name);
-            teacher.setId(id);
-            teacher.setUniversity(university);
-            teacher.setDegree(degree);
-            teacher.setPassword(password);
-
             teacher = new Teacher(id, last_name, first_name, email, password, university,"teacher", degree);
             data.setTeacher(teacher);
         }
 
-        welcomeLabel.setText("Welcome back, "  + teacher.getFirst_name() + "!" );
+        welcomeLabel.setText("Welcome back, "  + email + "!" );
 
 
     }
@@ -89,12 +82,23 @@ public class TeacherController implements Initializable {
     public void onClickManageAccount(ActionEvent event) throws IOException{
 
         root = FXMLLoader.load(getClass().getResource("manageAccount.fxml"));
-      //  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Manage Account");
         stage.show();
-        emailManageAccount.setText(data.getTeacher().getEmail());
+        //emailManageAccount.setText(data.getTeacher().getEmail());
+    }
+
+    @FXML
+    public void onClickNotes(ActionEvent event) throws IOException{
+
+        root = FXMLLoader.load(getClass().getResource("notes.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Notes");
+        stage.show();
     }
 
     // manage account
@@ -166,5 +170,9 @@ public class TeacherController implements Initializable {
         Platform.exit();
         System.exit(0);
     }
+
+    // notes
+
+
 
 }

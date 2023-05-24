@@ -187,7 +187,7 @@ public class AdminController {
     @FXML
     private TextField password;
     @FXML
-    private TextField userType_addaccount;
+    private TextField userTypeAddAccount;
     @FXML
     private TextField uni_group;
     @FXML
@@ -203,9 +203,10 @@ public class AdminController {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
 
         Statement statement = conn.createStatement();
-        Statement statement1 = conn.createStatement();
 
-        if (userType_addaccount.getText().equals("student")){
+        System.out.println("ok");
+        System.out.println(userTypeAddAccount.getText());
+        if (userTypeAddAccount.getText().equals("student")){
 
 
             statement.executeUpdate("insert into users " +
@@ -215,23 +216,24 @@ public class AdminController {
                     first_name.getText() + "','" +
                     email.getText() + "','" +
                     password.getText() + "','" +
-                    userType_addaccount.getText() + "','" +
+                    userTypeAddAccount.getText() + "','" +
                     university.getText() +  "'," +
                     Integer.parseInt(uni_year.getText()) + ",'" +
                     specialisation.getText()+ "','" +
                     uni_group.getText() +"');"
             );
 
-        } else if (userType_addaccount.getText().equals("teacher")) {
+        } else if (userTypeAddAccount.getText().equals("teacher")) {
+            System.out.println("ok");
 
-            statement1.executeUpdate("insert into users " +
+            statement.executeUpdate("insert into users " +
                     "(last_name,first_name,email,password,userType,university,degree)" +
                     " values ('" +
                     last_name.getText() + "','" +
                     first_name.getText() + "','" +
                     email.getText() + "','" +
                     password.getText() + "','" +
-                    userType_addaccount.getText() + "','" +
+                    userTypeAddAccount.getText() + "','" +
                     university.getText() + "','" +
                     degree.getText()+ "');"
             );
@@ -295,7 +297,7 @@ public class AdminController {
                     "set password='" + password_modifyAccount.getText() + "' where id=" +
                     Integer.parseInt(userId_modifyAccount.getText()) + ";" );
         }
-        password_modifyAccount.clear();
+
     }
 
     @FXML
@@ -310,7 +312,7 @@ public class AdminController {
                     "set userType='" + userType_modifyAccount.getText() + "' where id=" +
                     Integer.parseInt(userId_modifyAccount.getText()) + ";" );
         }
-        userType_modifyAccount.clear();
+
     }
 
     @FXML
@@ -325,7 +327,7 @@ public class AdminController {
                     "set university='" + university_modifyAccount.getText() + "' where id=" +
                     Integer.parseInt(userId_modifyAccount.getText()) + ";" );
         }
-        university_modifyAccount.clear();
+
     }
 
     @FXML
@@ -340,7 +342,7 @@ public class AdminController {
                     "set uni_year=" + Integer.parseInt(uni_year_modifyAccount.getText()) + " where id=" +
                     Integer.parseInt(userId_modifyAccount.getText()) + ";" );
         }
-        uni_year_modifyAccount.clear();
+
     }
 
     @FXML
@@ -355,7 +357,7 @@ public class AdminController {
                     "set specialisation='" + specialisation_modifyAccount.getText() + "' where id=" +
                     Integer.parseInt(userId_modifyAccount.getText()) + ";" );
         }
-        specialisation_modifyAccount.clear();
+
     }
 
     @FXML
@@ -370,7 +372,7 @@ public class AdminController {
                     "set uni_group='" + uni_group_modifyAccount.getText() + "' where id=" +
                     Integer.parseInt(userId_modifyAccount.getText()) + ";" );
         }
-        uni_group_modifyAccount.clear();
+
     }
 
     @FXML
@@ -385,7 +387,7 @@ public class AdminController {
                     "set degree='" + degree_modifyAccount.getText() + "' where id=" +
                     Integer.parseInt(userId_modifyAccount.getText()) + ";" );
         }
-        degree_modifyAccount.clear();
+
     }
 
 
@@ -538,7 +540,8 @@ public class AdminController {
                     "set photo='" + nameModifyCours.getText() + "' where id=" +
                     Integer.parseInt(coursIdModifyCours.getText()) + ";" );
         }
-        nameModifyCours.clear();
+
+
     }
 
     @FXML
@@ -553,7 +556,7 @@ public class AdminController {
                     "set photo='" + photoModifyCours.getText() + "' where id=" +
                     Integer.parseInt(coursIdModifyCours.getText()) + ";" );
         }
-        photoModifyCours.clear();
+
     }
 
     @FXML
@@ -568,7 +571,7 @@ public class AdminController {
                     "set qrcode='" + qrcodeModifyCours.getText() + "' where id=" +
                     Integer.parseInt(coursIdModifyCours.getText()) + ";" );
         }
-        qrcodeModifyCours.clear();
+
     }
 
 

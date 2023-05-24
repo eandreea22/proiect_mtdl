@@ -50,7 +50,7 @@
                   <Font name="Calibri Light" size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="userType_addaccount" layoutX="66.0" layoutY="190.0" prefHeight="29.0" prefWidth="224.0" promptText="User Type ">
+            <TextField fx:id="userTypeAddAccount" layoutX="66.0" layoutY="190.0" prefHeight="29.0" prefWidth="224.0" promptText="User Type ">
                <font>
                   <Font name="Calibri Light" size="16.0" />
                </font>
@@ -111,7 +111,7 @@
    <right>
       <AnchorPane prefHeight="441.0" prefWidth="185.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutY="415.0" mnemonicParsing="false" onAction="#onClickAddAccount" prefHeight="42.0" prefWidth="111.0" text="Add Account">
+            <Button layoutX="14.0" layoutY="415.0" mnemonicParsing="false" onAction="#onClickAddAccount" prefHeight="42.0" prefWidth="111.0" text="Add Account">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

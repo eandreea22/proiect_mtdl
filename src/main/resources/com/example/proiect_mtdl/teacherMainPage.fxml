@@ -52,7 +52,7 @@
                   <Font name="Calibri Light Italic" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="626.0" layoutY="308.0" mnemonicParsing="false" text="Notes">
+            <Button layoutX="626.0" layoutY="308.0" mnemonicParsing="false" onAction="#onClickNotes" text="Notes">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
