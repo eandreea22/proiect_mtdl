@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-import static java.sql.DriverManager.getConnection;
 
 public class AdminController {
 
@@ -75,15 +74,13 @@ public class AdminController {
     private TableColumn userType;
 
     @FXML
-    public void onClickLoadUsers() throws SQLException {
+    public void onClickLoadUsers() throws Exception {
 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
 
-        Statement statement = conn.createStatement();
-
-        ResultSet resultSet = statement.executeQuery("select * from users ");
 
         ObservableList<User> users = FXCollections.observableArrayList();
+
+        ResultSet resultSet = DatabaseConnection.getInstance().LoadUsers();
 
         while (resultSet.next()){
 
@@ -197,48 +194,34 @@ public class AdminController {
 
 
     @FXML
-    public void onClickAddAccount2() throws SQLException {
+    public void onClickAddAccount2() throws Exception {
 
-
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
-
-        System.out.println("ok");
-        System.out.println(userTypeAddAccount.getText());
         if (userTypeAddAccount.getText().equals("student")){
 
+            DatabaseConnection.getInstance().AddStudent(last_name.getText(), first_name.getText(),
+                    email.getText(), password.getText(), userTypeAddAccount.getText(),  university.getText(),
+                    Integer.parseInt(uni_year.getText()), specialisation.getText(),
+                    uni_group.getText());
 
-            statement.executeUpdate("insert into users " +
-                    " (last_name,first_name,email,password,userType,university,uni_year,specialisation,uni_group)" +
-                    " values ('" +
-                    last_name.getText() + "','" +
-                    first_name.getText() + "','" +
-                    email.getText() + "','" +
-                    password.getText() + "','" +
-                    userTypeAddAccount.getText() + "','" +
-                    university.getText() +  "'," +
-                    Integer.parseInt(uni_year.getText()) + ",'" +
-                    specialisation.getText()+ "','" +
-                    uni_group.getText() +"');"
-            );
 
         } else if (userTypeAddAccount.getText().equals("teacher")) {
-            System.out.println("ok");
 
-            statement.executeUpdate("insert into users " +
-                    "(last_name,first_name,email,password,userType,university,degree)" +
-                    " values ('" +
-                    last_name.getText() + "','" +
-                    first_name.getText() + "','" +
-                    email.getText() + "','" +
-                    password.getText() + "','" +
-                    userTypeAddAccount.getText() + "','" +
-                    university.getText() + "','" +
-                    degree.getText()+ "');"
-            );
+            DatabaseConnection.getInstance().AddTeacher(last_name.getText(), first_name.getText(),
+                    email.getText(), password.getText(), userTypeAddAccount.getText(),  university.getText(),
+                    degree.getText());
         }
 
+
+        degree.clear();
+        last_name.clear();
+        first_name.clear();
+        email.clear();
+        password.clear();
+        userTypeAddAccount.clear();
+        university.clear();
+        uni_year.clear();
+        specialisation.clear();
+        uni_group.clear();
     }
 
     @FXML
@@ -257,14 +240,11 @@ public class AdminController {
     private TextField userId_deleteAccount;
 
     @FXML
-    public void onClickDelete() throws SQLException{
+    public void onClickDelete() throws Exception{
 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
+        DatabaseConnection.getInstance().DeleteAccount(Integer.parseInt(userId_deleteAccount.getText()));
+        userId_deleteAccount.clear();
 
-        Statement statement = conn.createStatement();
-
-        statement.executeUpdate("delete from users " +
-                "where id=" + Integer.parseInt(userId_deleteAccount.getText()) + ";");
     }
 
    //modify account
@@ -286,106 +266,77 @@ public class AdminController {
     private TextField degree_modifyAccount;
 
     @FXML
-    private void onClickModifyPassword() throws SQLException{
+    private void onClickModifyPassword() throws Exception{
 
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
 
         if(password_modifyAccount.getText().isEmpty() == false){
-            statement.executeUpdate("update users " +
-                    "set password='" + password_modifyAccount.getText() + "' where id=" +
-                    Integer.parseInt(userId_modifyAccount.getText()) + ";" );
+            DatabaseConnection.getInstance().ModifyPassword(password_modifyAccount.getText(), Integer.parseInt(userId_modifyAccount.getText()));
+            password_modifyAccount.clear();
         }
 
     }
 
     @FXML
-    private void onClickModifyUserType() throws SQLException{
-
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
+    private void onClickModifyUserType() throws Exception{
 
         if(userType_modifyAccount.getText().isEmpty() == false){
-            statement.executeUpdate("update users " +
-                    "set userType='" + userType_modifyAccount.getText() + "' where id=" +
-                    Integer.parseInt(userId_modifyAccount.getText()) + ";" );
+            DatabaseConnection.getInstance().ModifyUserType(userType_modifyAccount.getText(), Integer.parseInt(userId_modifyAccount.getText()));
+            userType_modifyAccount.clear();
         }
 
     }
 
     @FXML
-    private void onClickModifyUniversity() throws SQLException{
+    private void onClickModifyUniversity() throws Exception{
 
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
 
         if(university_modifyAccount.getText().isEmpty() == false){
-            statement.executeUpdate("update users " +
-                    "set university='" + university_modifyAccount.getText() + "' where id=" +
-                    Integer.parseInt(userId_modifyAccount.getText()) + ";" );
+            DatabaseConnection.getInstance().ModifyUniversity(university_modifyAccount.getText(), Integer.parseInt(userId_modifyAccount.getText()));
+            university_modifyAccount.clear();
         }
 
     }
 
     @FXML
-    private void onClickModifyYear() throws SQLException{
+    private void onClickModifyYear() throws Exception{
 
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
 
         if(uni_year_modifyAccount.getText().isEmpty() == false){
-            statement.executeUpdate("update users " +
-                    "set uni_year=" + Integer.parseInt(uni_year_modifyAccount.getText()) + " where id=" +
-                    Integer.parseInt(userId_modifyAccount.getText()) + ";" );
+            DatabaseConnection.getInstance().ModifyYear(Integer.parseInt(uni_year_modifyAccount.getText()), Integer.parseInt(userId_modifyAccount.getText()));
+            uni_year_modifyAccount.clear();
         }
 
     }
 
     @FXML
-    private void onClickModifySpecialisation() throws SQLException{
-
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
+    private void onClickModifySpecialisation() throws Exception{
 
         if(specialisation_modifyAccount.getText().isEmpty() == false){
-            statement.executeUpdate("update users " +
-                    "set specialisation='" + specialisation_modifyAccount.getText() + "' where id=" +
-                    Integer.parseInt(userId_modifyAccount.getText()) + ";" );
+            DatabaseConnection.getInstance().ModifySpecilisation(Integer.parseInt(userId_modifyAccount.getText()), specialisation_modifyAccount.getText());
+            specialisation_modifyAccount.clear();
         }
 
     }
 
     @FXML
-    private void onClickModifyGroup() throws SQLException{
-
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
+    private void onClickModifyGroup() throws Exception{
 
         if(uni_group_modifyAccount.getText().isEmpty() == false){
-            statement.executeUpdate("update users " +
-                    "set uni_group='" + uni_group_modifyAccount.getText() + "' where id=" +
-                    Integer.parseInt(userId_modifyAccount.getText()) + ";" );
+
+            DatabaseConnection.getInstance().ModifyGroup(uni_group_modifyAccount.getText(), Integer.parseInt(userId_modifyAccount.getText()));
+            uni_group.clear();
         }
 
     }
 
     @FXML
-    private void onClickModifyDegree() throws SQLException{
+    private void onClickModifyDegree() throws Exception{
 
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
 
         if(degree_modifyAccount.getText().isEmpty() == false){
-            statement.executeUpdate("update users " +
-                    "set degree='" + degree_modifyAccount.getText() + "' where id=" +
-                    Integer.parseInt(userId_modifyAccount.getText()) + ";" );
+
+            DatabaseConnection.getInstance().ModifyDegree(degree_modifyAccount.getText(), Integer.parseInt(userId_modifyAccount.getText()));
+            degree_modifyAccount.clear();
         }
 
     }
@@ -400,16 +351,11 @@ public class AdminController {
     private TableColumn namecoursAllCourses;
 
     @FXML
-    public void onClickLoadCourses() throws SQLException {
-
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
-
-        ResultSet resultSet = statement.executeQuery("select * from cours ");
+    public void onClickLoadCourses() throws Exception {
 
         ObservableList<Cours> courses = FXCollections.observableArrayList();
 
+        ResultSet resultSet = DatabaseConnection.getInstance().LoadCourses();
         while (resultSet.next()){
             String id = resultSet.getString("id");
             String name = resultSet.getString("name");
@@ -483,14 +429,11 @@ public class AdminController {
     @FXML
     private TextField photoAddCours;
     @FXML
-    public void onClickAddCours() throws SQLException{
+    public void onClickAddCours() throws Exception{
 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
-        statement.executeUpdate("insert into cours" +
-                " (name, photo) values ('" +
-                coursNameAddCours.getText() + "','" + photoAddCours.getText() + "');");
+        DatabaseConnection.getInstance().AddCours(coursNameAddCours.getText(), photoAddCours.getText());
+        coursIdDeleteCours.clear();
+        coursNameAddCours.clear();
     }
 
     // delete cours
@@ -498,13 +441,11 @@ public class AdminController {
     private TextField coursIdDeleteCours;
 
     @FXML
-    public void onClickDeleteCours() throws SQLException{
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
+    public void onClickDeleteCours() throws Exception{
 
-        Statement statement = conn.createStatement();
+        DatabaseConnection.getInstance().DeleteCours(Integer.parseInt(coursIdDeleteCours.getText()));
+        coursIdDeleteCours.clear();
 
-        statement.executeUpdate("delete from cours " +
-                "where id=" + Integer.parseInt(coursIdDeleteCours.getText()) + ";");
     }
 
     // modify cours
@@ -529,47 +470,37 @@ public class AdminController {
     }
 
     @FXML
-    private void onClickModifyNameModifyCours() throws SQLException {
-
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
+    private void onClickModifyNameModifyCours() throws Exception {
 
         if(nameModifyCours.getText().isEmpty() == false){
-            statement.executeUpdate("update cours " +
-                    "set photo='" + nameModifyCours.getText() + "' where id=" +
-                    Integer.parseInt(coursIdModifyCours.getText()) + ";" );
+            DatabaseConnection.getInstance().ModifyNameCours(nameModifyCours.getText(), Integer.parseInt(coursIdModifyCours.getText()));
+            nameModifyCours.clear();
+
         }
 
 
     }
 
     @FXML
-    private void onClickModifyPhotoModifyCours() throws SQLException {
+    private void onClickModifyPhotoModifyCours() throws Exception {
 
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
 
         if(photoModifyCours.getText().isEmpty() == false){
-            statement.executeUpdate("update cours " +
-                    "set photo='" + photoModifyCours.getText() + "' where id=" +
-                    Integer.parseInt(coursIdModifyCours.getText()) + ";" );
+            DatabaseConnection.getInstance().ModifyPhotoCours(photoModifyCours.getText(), Integer.parseInt(coursIdModifyCours.getText()));
+            photoModifyCours.clear();
+
         }
 
     }
 
     @FXML
-    private void onClickModifyQrCodeModifyCours() throws SQLException {
+    private void onClickModifyQrCodeModifyCours() throws Exception {
 
-        Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
 
         if(qrcodeModifyCours.getText().isEmpty() == false){
-            statement.executeUpdate("update cours " +
-                    "set qrcode='" + qrcodeModifyCours.getText() + "' where id=" +
-                    Integer.parseInt(coursIdModifyCours.getText()) + ";" );
+
+            DatabaseConnection.getInstance().ModifyQrCodeCours(qrcodeModifyCours.getText(), Integer.parseInt(coursIdModifyCours.getText()));
+            qrcodeModifyCours.clear();
         }
 
     }
