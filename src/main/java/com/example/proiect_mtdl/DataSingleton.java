@@ -4,7 +4,7 @@ public class DataSingleton {
 
     private static final DataSingleton instance = new DataSingleton();
 
-    private Teacher teacher;
+    private String email;
 
 
     public DataSingleton() {}
@@ -13,11 +13,11 @@ public class DataSingleton {
         return instance;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public String getEmail() {
+        return email;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

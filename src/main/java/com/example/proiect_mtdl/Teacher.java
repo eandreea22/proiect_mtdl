@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 public class Teacher extends User{
 
     private String degree;
-    private Teacher teacher;
+
 
     public Teacher() {
     }

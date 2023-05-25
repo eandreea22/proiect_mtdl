@@ -24,53 +24,43 @@ import java.util.ResourceBundle;
 
 import static java.sql.DriverManager.getConnection;
 
-public class TeacherController implements Initializable {
+public class TeacherController{
 
     Parent root;
     Stage stage;
     Scene scene;
     @FXML
-    private Label welcomeLabel;
-
-    private Teacher teacher;
-    DataSingleton data = DataSingleton.getInstance();
+    private Label labelNameWelcome;
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-        teacher = data.getTeacher();
+    public String email;
+
+
+//    DataSingleton data = new DataSingleton();
+//
+//    @Override
+//    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        email.setText(data.getEmail());
+//        welcomeLabel.setText("Welcome back, " + data.getEmail() + "!");
+//    }
+
+    public void setNameWelcome(String s){
+        labelNameWelcome.setText(s);
     }
 
-    public void createTeacher(String email, String password) throws SQLException {
-
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-        Statement statement = conn.createStatement();
-
-        ResultSet resultSet2 = statement.executeQuery("select * from users " +
-                "where email='"  + email + "' " +
-                "and password='" + password + "';");
-
-        while (resultSet2.next()){
-            int id = Integer.parseInt(resultSet2.getString("id"));
-            String first_name = resultSet2.getString("first_name");
-            String last_name = resultSet2.getString("last_name");
-            String university = resultSet2.getString("university");
-            String degree = resultSet2.getString("degree");
-
-            teacher = new Teacher(id, last_name, first_name, email, password, university,"teacher", degree);
-            data.setTeacher(teacher);
-        }
-
-        welcomeLabel.setText("Welcome back, "  + email + "!" );
-
-
+    public String setEmail(String s){
+        email = s;
+        return email;
     }
+
 
     @FXML
     public void onClickBackLogin(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+
+//        stage = (Stage) email.getScene().getWindow();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -83,11 +73,14 @@ public class TeacherController implements Initializable {
 
         root = FXMLLoader.load(getClass().getResource("manageAccount.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        DataSingleton data = DataSingleton.getInstance();
+       // Teacher teacher = data.getTeacher();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Manage Account");
         stage.show();
-        //emailManageAccount.setText(data.getTeacher().getEmail());
+        emailManageAccount.setText(labelNameWelcome.getText());
+
     }
 
     @FXML
@@ -109,8 +102,6 @@ public class TeacherController implements Initializable {
     private Label nameManageAccount;
     @FXML
     private Label universityManageAccount;
-    @FXML
-    private Label specialisationManageAccount;
     @FXML
     private Label degreeManageAccount;
     @FXML
@@ -134,22 +125,22 @@ public class TeacherController implements Initializable {
     @FXML
     public void onClickModifyPassword() throws SQLException{
 
-        if (teacher.getPassword().equals(oldPasswordManageAccount.getText())){
-
-            teacher.setPassword(newPasswordManageAccount.getText());
-
-            Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-
-            Statement statement = conn.createStatement();
-
-            if(newPasswordManageAccount.getText().isEmpty() == false){
-                statement.executeUpdate("update users " +
-                        "set password='" + newPasswordManageAccount.getText() + "' where id=" +
-                        Integer.toString(teacher.getId()) + ";" );
-            }
-            oldPasswordManageAccount.clear();
-            newPasswordManageAccount.clear();
-        }
+//        if (teacher.getPassword().equals(oldPasswordManageAccount.getText())){
+//
+//            teacher.setPassword(newPasswordManageAccount.getText());
+//
+//            Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
+//
+//            Statement statement = conn.createStatement();
+//
+//            if(newPasswordManageAccount.getText().isEmpty() == false){
+//                statement.executeUpdate("update users " +
+//                        "set password='" + newPasswordManageAccount.getText() + "' where id=" +
+//                        Integer.toString(teacher.getId()) + ";" );
+//            }
+//            oldPasswordManageAccount.clear();
+//            newPasswordManageAccount.clear();
+//        }
 
     }
 
@@ -158,11 +149,11 @@ public class TeacherController implements Initializable {
     @FXML
     public void onClickModifyPhoto(){
 
-        teacher.setPhoto(photoManageAccount.getText());
-        profilePicture.setImage(new Image(photoManageAccount.getText()));
-
-        photoManageAccount.clear();
-        profilePhoto.setImage(new Image(teacher.getPhoto()));
+//        teacher.setPhoto(photoManageAccount.getText());
+//        profilePicture.setImage(new Image(photoManageAccount.getText()));
+//
+//        photoManageAccount.clear();
+//        profilePhoto.setImage(new Image(teacher.getPhoto()));
     }
 
     @FXML
@@ -173,6 +164,19 @@ public class TeacherController implements Initializable {
 
     // notes
 
+    // view cours
 
+    // show student
+    @FXML
+    public void onClickBackViewCours(ActionEvent event) throws IOException{
+
+        Parent root = FXMLLoader.load(getClass().getResource("teacherViewCours.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Cours Page");
+        stage.show();
+
+    }
 
 }

@@ -23,7 +23,7 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="welcomeLabel" layoutX="14.0" layoutY="96.0" prefHeight="41.0" prefWidth="129.0" text="Welcome back, " textAlignment="CENTER" textFill="#8f691c" wrapText="true" AnchorPane.bottomAnchor="2.000000000000007" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="556.6666666666666" AnchorPane.topAnchor="96.0">
+            <Label fx:id="welcomeLabel" layoutX="14.0" layoutY="96.0" prefHeight="41.0" prefWidth="94.0" text="Welcome back, " textAlignment="CENTER" textFill="#8f691c" wrapText="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="592.0" AnchorPane.topAnchor="96.0">
                <font>
                   <Font name="Calibri Light" size="14.5" />
                </font>
@@ -34,6 +34,11 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="labelNameWelcome" layoutX="108.0" layoutY="96.0" prefHeight="41.0" prefWidth="94.0" textAlignment="CENTER" textFill="#8f691c" wrapText="true">
+               <font>
+                  <Font name="Calibri Light" size="14.5" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </top>

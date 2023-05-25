@@ -86,11 +86,6 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="38.0" layoutY="104.0" prefHeight="26.0" prefWidth="83.0" style="-fx-border-color: af804f;" text="Specialisation:">
-               <font>
-                  <Font name="Calibri Light" size="14.0" />
-               </font>
-            </Label>
             <Label fx:id="nameManageAccount" layoutX="122.0" layoutY="26.0" prefHeight="26.0" prefWidth="210.0">
                <font>
                   <Font name="Calibri Light" size="14.0" />
@@ -101,12 +96,7 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="specialisationManageAccount" layoutX="122.0" layoutY="104.0" prefHeight="26.0" prefWidth="210.0">
-               <font>
-                  <Font name="Calibri Light" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="degreeManageAccount" layoutX="122.0" layoutY="130.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="degreeManageAccount" layoutX="122.0" layoutY="104.0" prefHeight="26.0" prefWidth="210.0">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -116,7 +106,7 @@
                   <Font name="Calibri Light" size="16.0" />
                </font>
             </TextField>
-            <Label alignment="CENTER" layoutX="38.0" layoutY="130.0" prefHeight="26.0" prefWidth="83.0" style="-fx-border-color: af804f;" text="Degree:">
+            <Label alignment="CENTER" layoutX="38.0" layoutY="104.0" prefHeight="26.0" prefWidth="83.0" style="-fx-border-color: af804f;" text="Degree:">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -29,10 +30,7 @@ public class LoginController {
     @FXML
     private TextField password_login;
 
-    @FXML
-    private Teacher teacher;
     DataSingleton data = DataSingleton.getInstance();
-
 
     @FXML
     protected void onLoginClick(ActionEvent event) throws SQLException, IOException {
@@ -69,28 +67,29 @@ public class LoginController {
                 } else if (resultSet2.getString("userType").equals("teacher")) {
 
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("teacherMainPage.fxml"));
-                    root = fxmlLoader.load();
+//                    int id = Integer.parseInt(resultSet2.getString("id"));
+//                    String first_name = resultSet2.getString("first_name");
+//                    String last_name = resultSet2.getString("last_name");
+//                    String university = resultSet2.getString("university");
+//                    String degree = resultSet2.getString("degree");
+//
+//                    Teacher teacher = new Teacher(id, last_name, first_name, email_login.getText(), password_login.getText(), university,"teacher", degree);
+//
+//                    DataSingleton data = DataSingleton.getInstance();
+//                    data.setTeacher(teacher);
 
-                    TeacherController teacherController = fxmlLoader.getController();
-                    teacherController.createTeacher(email_login.getText(), password_login.getText());
 
-                    int id = Integer.parseInt(resultSet2.getString("id"));
-                    String first_name = resultSet2.getString("first_name");
-                    String last_name = resultSet2.getString("last_name");
-                    String university = resultSet2.getString("university");
-                    String degree = resultSet2.getString("degree");
+//                    data.setEmail(email_login.getText());
+//                    stage = (Stage) email_login.getScene().getWindow();
 
-                    teacher = new Teacher(id, last_name, first_name, email_login.getText(), password_login.getText(), university,"teacher", degree);
-
-                    data.setTeacher(teacher);
-
-                    //stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    stage = (Stage) email_login.getScene().getWindow();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherMainPage.fxml"));
+                    root = loader.load();
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    TeacherController teacherController = loader.getController();
+                    teacherController.setNameWelcome(email_login.getText());
                     scene = new Scene(root);
                     stage.setTitle("Teacher Main Page");
                     stage.setScene(scene);
-                    stage.show();
                 }
             }
         }

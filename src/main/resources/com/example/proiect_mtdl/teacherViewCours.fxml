@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.TeacherController">
+   <top>
+      <AnchorPane prefHeight="99.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="139.0" fitWidth="175.0" layoutX="263.0">
+               <image>
+                  <Image url="@../../../images/logo.jpeg" />
+               </image>
+            </ImageView>
+            <Button layoutX="561.0" layoutY="98.0" mnemonicParsing="false" onAction="#onClickManageAccount" text="Manage Account">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="profilePhoto" fitHeight="71.0" fitWidth="76.0" layoutX="580.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickBackLogin" text="Back">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="12.0" layoutY="92.0" prefHeight="31.0" prefWidth="127.0" text="#NameCours">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="553.0" layoutY="300.0" mnemonicParsing="false" onAction="#onClickBackLogin" prefHeight="35.0" prefWidth="125.0" text="Edit Cours Page">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="531.0" layoutY="14.0" prefHeight="28.0" prefWidth="75.0" text="Students">
+               <font>
+                  <Font name="Calibri Light Italic" size="16.0" />
+               </font>
+            </Label>
+            <ListView layoutX="452.0" layoutY="43.0" prefHeight="231.0" prefWidth="234.0" />
+            <TableView layoutX="21.0" layoutY="43.0" prefHeight="200.0" prefWidth="223.0">
+              <columns>
+                <TableColumn prefWidth="106.66665267944336" text="Name" />
+                <TableColumn prefWidth="115.3333485921224" text="DeadLine" />
+              </columns>
+            </TableView>
+            <Label alignment="CENTER" layoutX="62.0" layoutY="12.0" prefHeight="31.0" prefWidth="127.0" text="Assigements">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="133.0" layoutY="247.0" mnemonicParsing="false" onAction="#onClickBackLogin" text="Load Assigments">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="qrcodeImage" fitHeight="101.0" fitWidth="132.0" layoutX="284.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="292.0" layoutY="180.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="115.0" text="Show QR Code">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
