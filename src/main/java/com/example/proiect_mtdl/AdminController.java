@@ -13,9 +13,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
 
@@ -463,13 +469,6 @@ public class AdminController {
 
 
     @FXML
-    public void onClickShowQrCode() {
-
-
-
-    }
-
-    @FXML
     private void onClickModifyNameModifyCours() throws Exception {
 
         if(nameModifyCours.getText().isEmpty() == false){
@@ -502,6 +501,21 @@ public class AdminController {
             DatabaseConnection.getInstance().ModifyQrCodeCours(qrcodeModifyCours.getText(), Integer.parseInt(coursIdModifyCours.getText()));
             qrcodeModifyCours.clear();
         }
+
+    }
+
+    @FXML
+    public void onClickShowQrCode() throws Exception{
+
+        String stringForQrCode = DatabaseConnection.getInstance().GetQrCodeModifyCours(Integer.parseInt(coursIdModifyCours.getText()));
+        ByteArrayOutputStream out = QRCode.from(stringForQrCode).to(ImageType.JPG).stream();
+
+        File f = new File("@../../../images/logo.jpeg");
+        FileOutputStream fos = new FileOutputStream(f);
+        fos.write(out.toByteArray());
+        fos.flush();
+
+        qrcodeImageModifyCours.setImage(new Image(f.getAbsolutePath()));
 
     }
 

@@ -164,4 +164,16 @@ public class DatabaseConnection {
 
     }
 
+    public String GetQrCodeModifyCours(int coursId) throws Exception{
+
+            ResultSet resultSet = statement.executeQuery("select * from cours " +
+                    "where id=" + coursId + ";");
+
+        while(resultSet.next()){
+            return resultSet.getString("qrcode");
+        }
+
+        return null;
+    }
+
 }

@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.AdminController">
    <top>
       <AnchorPane prefHeight="127.0" prefWidth="650.0" BorderPane.alignment="CENTER">
@@ -37,7 +36,7 @@
                </font>
             </TextArea>
             <ImageView fx:id="qrcodeImage" fitHeight="101.0" fitWidth="132.0" layoutX="55.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="63.0" layoutY="279.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="115.0" text="Show QR Code">
+            <Button layoutX="63.0" layoutY="279.0" mnemonicParsing="false" onAction="#onClickShowQrCode" prefHeight="34.0" prefWidth="115.0" text="Show QR Code">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
