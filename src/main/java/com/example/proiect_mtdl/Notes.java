@@ -2,15 +2,15 @@ package com.example.proiect_mtdl;
 
 public class Notes {
 
-    private int id = 0;
+    private int id;
     private String name;
     private String content;
 
     public Notes(String name, String content) {
-        this.id ++;
         this.name = name;
         this.content = content;
     }
+
 
     public Notes() {
 

@@ -11,15 +11,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static java.sql.DriverManager.getConnection;
@@ -32,35 +35,136 @@ public class TeacherController{
     @FXML
     private Label labelNameWelcome;
 
-
     public String email;
 
 
-//    DataSingleton data = new DataSingleton();
-//
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        email.setText(data.getEmail());
-//        welcomeLabel.setText("Welcome back, " + data.getEmail() + "!");
-//    }
-
-    public void setNameWelcome(String s){
+    public void setNameWelcome(String s) throws Exception{
         labelNameWelcome.setText(s);
+
     }
 
-    public String setEmail(String s){
-        email = s;
-        return email;
+    @FXML
+    private TableView nameCourses;
+    @FXML
+    private TableColumn nameTable;
+    @FXML
+    private TableColumn idCoursTable;
+
+    public void setCourses(int idteacher) throws Exception{
+
+        ArrayList<Cours> cours = DatabaseConnection.getInstance().getTeacherCourses(idteacher);
+        ObservableList<Cours> cours1 = FXCollections.observableArrayList(cours);
+
+
+        nameTable.setCellValueFactory(
+                new PropertyValueFactory<Cours, String>("name")
+        );
+        idCoursTable.setCellValueFactory(
+                new PropertyValueFactory<Cours, Integer>("id")
+        );
+
+        nameCourses.setItems(cours1);
+        nameCourses.refresh();
     }
 
+
+    @FXML
+    private TableView namesStudents;
+    @FXML
+    private TableColumn last_nameStudents;
+    @FXML
+    private TableColumn first_nameStudents;
+    @FXML
+    private TableColumn idStudents;
+
+    public void setStudent(int idteacher) throws Exception{
+
+        ArrayList<Student> students = DatabaseConnection.getInstance().getTeacherStudents(idteacher);
+        ObservableList<Student> students1 = FXCollections.observableArrayList(students);
+
+
+        first_nameStudents.setCellValueFactory(
+                new PropertyValueFactory<Student, String>("first_name")
+        );
+        last_nameStudents.setCellValueFactory(
+                new PropertyValueFactory<Student, String>("last_name")
+        );
+        idStudents.setCellValueFactory(
+                new PropertyValueFactory<Student, Integer>("id")
+        );
+
+        namesStudents.setItems(students1);
+        namesStudents.refresh();
+    }
+
+
+    @FXML
+    private Label nameShowStudent;
+    @FXML
+    private Label emailShowStudent;
+    @FXML
+    private Label universityShowStudent;
+    @FXML
+    private Label specialisationShowStudent;
+    @FXML
+    private Label yearShowStudent;
+    @FXML
+    private Label groupShowStudent;
+    @FXML
+    private TextField idStudentShowStudent;
+
+    public void setDataStudent(int idStudent) throws Exception{
+
+        Student student = DatabaseConnection.getInstance().returnStudent(idStudent);
+
+        nameShowStudent.setText("   " + student.getFirst_name() + " " + student.getLast_name());
+        emailShowStudent.setText("   " + student.getEmail());
+        yearShowStudent.setText("   " + Integer.toString(student.getUni_year()));
+        groupShowStudent.setText("   " + student.getGroup());
+        universityShowStudent.setText("   " + student.getUniversity());
+        specialisationShowStudent.setText("   " + student.getSpecialisation());
+    }
+    @FXML
+    public void onClickViewStudent(ActionEvent event) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherShowStudent.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        TeacherController teacherController = loader.getController();
+
+        teacherController.setDataStudent(Integer.parseInt(idStudentShowStudent.getText()));
+
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Student");
+        stage.show();
+    }
+
+    public void setDataCours() throws Exception{
+
+    }
+
+    public void onClickViewCours(ActionEvent event) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherViewCours.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        TeacherController teacherController = loader.getController();
+
+        teacherController.setDataStudent(Integer.parseInt(idStudentShowStudent.getText()));
+
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Student");
+        stage.show();
+    }
 
     @FXML
     public void onClickBackLogin(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-
-//        stage = (Stage) email.getScene().getWindow();
-
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -68,48 +172,202 @@ public class TeacherController{
         stage.show();
     }
 
-    @FXML
-    public void onClickManageAccount(ActionEvent event) throws IOException{
+    public void onClickRemoveStudent(ActionEvent event) throws Exception{
 
-        root = FXMLLoader.load(getClass().getResource("manageAccount.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherMainPage.fxml"));
+        root = loader.load();
+
+        DatabaseConnection.getInstance().RemoveStudent(emailShowStudent.getText());
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        DataSingleton data = DataSingleton.getInstance();
-       // Teacher teacher = data.getTeacher();
+        scene = new Scene(root);
+        stage.setScene(scene);
+
+
+        stage.setTitle("Main Page");
+        stage.show();
+    }
+
+    @FXML
+    private Label nameManageAccount;
+    @FXML
+    private Label emailManageAccount;
+    @FXML
+    private Label universityManageAccount;
+    @FXML
+    private Label degreeManageAccount;
+
+    public void setData(Teacher teacher) throws Exception{
+
+        emailManageAccount.setText("   " + teacher.getEmail());
+        nameManageAccount.setText("   " + teacher.getFirst_name() + " " + teacher.getLast_name());
+        universityManageAccount.setText("   " + teacher.getUniversity());
+        degreeManageAccount.setText("   " + teacher.getDegree());
+
+    }
+
+
+
+    public void onClickManageAccount(ActionEvent event) throws IOException, Exception{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("manageAccount.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        Teacher user;
+        user = DatabaseConnection.getInstance().getTeacher();
+        TeacherController teacherController = loader.getController();
+        teacherController.setData(user);
+
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Manage Account");
         stage.show();
-        emailManageAccount.setText(labelNameWelcome.getText());
 
     }
 
     @FXML
-    public void onClickNotes(ActionEvent event) throws IOException{
+    private Label nameNotes1;
+    @FXML
+    private Label nameNotes2;
+    @FXML
+    private Label nameNotes3;
+    @FXML
+    private TextArea notes1;
+    @FXML
+    private TextArea notes2;
+    @FXML
+    private TextArea notes3;
 
-        root = FXMLLoader.load(getClass().getResource("notes.fxml"));
+    public void SetNotes(int idUser) throws Exception{
+
+        ArrayList<Notes> notes = DatabaseConnection.getInstance().getNotes(idUser);
+
+
+        for (int i=0; i<notes.size();i++){
+
+            if (i==0){
+                if (notes.get(i).getName() != null){
+                    nameNotes1.setText(notes.get(i).getName());
+                    nameNotes1.setVisible(true);
+                }
+
+                if (notes.get(i).getContent() != null){
+                    notes1.setText(notes.get(i).getContent());
+
+                }
+                notes1.setVisible(true);
+
+            }
+            if (i==1){
+                if (notes.get(i).getName() != null){
+                    nameNotes2.setText(notes.get(i).getName());
+                    nameNotes2.setVisible(true);
+                }
+
+                if (notes.get(i).getContent() != null){
+                    notes2.setText(notes.get(i).getContent());
+                }
+                notes2.setVisible(true);
+            }
+            if (i==2){
+                if (notes.get(i).getName() != null){
+                    nameNotes3.setText(notes.get(i).getName());
+                    nameNotes3.setVisible(true);
+                }
+
+                if (notes.get(i).getContent() != null){
+                    notes3.setText(notes.get(i).getContent());
+                }
+                notes3.setVisible(true);
+            }
+        }
+    }
+
+    @FXML
+    public void onClickNotes(ActionEvent event) throws Exception{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("notes.fxml"));
+        root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        TeacherController teacherController = loader.getController();
+        teacherController.SetNotes(DatabaseConnection.getInstance().getTeacher().getId());
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Notes");
         stage.show();
     }
 
+    @FXML
+    public void onClickModifyNote() throws Exception{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("notes.fxml"));
+        root = loader.load();
+
+        TeacherController teacherController = loader.getController();
+        teacherController.SetNotes(DatabaseConnection.getInstance().getTeacher().getId());
+        DatabaseConnection.getInstance().setNote(DatabaseConnection.getInstance().getTeacher().getId(), notes1.getText(), nameNotes1.getText());
+        DatabaseConnection.getInstance().setNote(DatabaseConnection.getInstance().getTeacher().getId(), notes2.getText(), nameNotes2.getText());
+        DatabaseConnection.getInstance().setNote(DatabaseConnection.getInstance().getTeacher().getId(), notes3.getText(), nameNotes3.getText());
+
+
+    }
+    @FXML
+    private TextField newNote;
+
+    @FXML
+    public void onClickAddNote(ActionEvent event) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("notes.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        DatabaseConnection.getInstance().addNote(DatabaseConnection.getInstance().getTeacher().getId(), newNote.getText());
+        TeacherController teacherController = loader.getController();
+        teacherController.SetNotes(DatabaseConnection.getInstance().getTeacher().getId());
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Notes");
+        stage.show();
+    }
+
+
+
+    @FXML
+    public void onClickDeleteNote(ActionEvent event) throws Exception{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("notes.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        DatabaseConnection.getInstance().deleteNote(DatabaseConnection.getInstance().getTeacher().getId(), newNote.getText());
+        TeacherController teacherController = loader.getController();
+        teacherController.SetNotes(DatabaseConnection.getInstance().getTeacher().getId());
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Notes");
+        stage.show();
+
+    }
+
+
     // manage account
 
     @FXML
-    private Label emailManageAccount;
-    @FXML
-    private Label nameManageAccount;
-    @FXML
-    private Label universityManageAccount;
-    @FXML
-    private Label degreeManageAccount;
-    @FXML
-    public void onClickBackMainPage(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("teacherMainPage.fxml"));
+    public void onClickBackMainPage(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherMainPage.fxml"));
+        root = loader.load();
+
+        TeacherController teacherController = loader.getController();
+        teacherController.setNameWelcome(DatabaseConnection.getInstance().getTeacher().getFirst_name());
+        teacherController.setStudent(DatabaseConnection.getInstance().getTeacher().getId());
+        teacherController.setCourses(DatabaseConnection.getInstance().getTeacher().getId());
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+
+
         stage.setTitle("Main Page");
         stage.show();
     }
@@ -123,37 +381,25 @@ public class TeacherController{
     @FXML
     private ImageView profilePicture;
     @FXML
-    public void onClickModifyPassword() throws SQLException{
+    public void onClickModifyPassword() throws Exception{
 
-//        if (teacher.getPassword().equals(oldPasswordManageAccount.getText())){
-//
-//            teacher.setPassword(newPasswordManageAccount.getText());
-//
-//            Connection conn = getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
-//
-//            Statement statement = conn.createStatement();
-//
-//            if(newPasswordManageAccount.getText().isEmpty() == false){
-//                statement.executeUpdate("update users " +
-//                        "set password='" + newPasswordManageAccount.getText() + "' where id=" +
-//                        Integer.toString(teacher.getId()) + ";" );
-//            }
-//            oldPasswordManageAccount.clear();
-//            newPasswordManageAccount.clear();
-//        }
+
+        if (oldPasswordManageAccount.getText().equals(DatabaseConnection.getInstance().getTeacher().getPassword())){
+
+            DatabaseConnection.getInstance().ModifyPassword(newPasswordManageAccount.getText(), DatabaseConnection.getInstance().getTeacher().getId());
+            newPasswordManageAccount.clear();
+            oldPasswordManageAccount.clear();
+        }
 
     }
 
     @FXML
     private ImageView profilePhoto;
     @FXML
-    public void onClickModifyPhoto(){
+    public void onClickModifyPhoto() throws Exception {
 
-//        teacher.setPhoto(photoManageAccount.getText());
-//        profilePicture.setImage(new Image(photoManageAccount.getText()));
-//
-//        photoManageAccount.clear();
-//        profilePhoto.setImage(new Image(teacher.getPhoto()));
+        DatabaseConnection.getInstance().ModifyPhoto(DatabaseConnection.getInstance().getTeacher().getId(), photoManageAccount.getText());
+        photoManageAccount.clear();
     }
 
     @FXML
@@ -178,5 +424,6 @@ public class TeacherController{
         stage.show();
 
     }
+
 
 }

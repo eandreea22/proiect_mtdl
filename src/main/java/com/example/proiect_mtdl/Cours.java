@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Cours {
 
-    private int id= 0;
+    private int id;
     private String name;
     private ArrayList<String> materials = new ArrayList<String>();
     private String photo;

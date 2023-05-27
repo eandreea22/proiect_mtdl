@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -45,8 +47,6 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView layoutX="69.0" layoutY="64.0" prefHeight="231.0" prefWidth="234.0" />
-            <ListView layoutX="392.0" layoutY="64.0" prefHeight="231.0" prefWidth="234.0" />
             <Label alignment="CENTER" layoutX="471.0" layoutY="36.0" prefHeight="28.0" prefWidth="75.0" text="Students">
                <font>
                   <Font name="Calibri Light Italic" size="16.0" />
@@ -57,7 +57,32 @@
                   <Font name="Calibri Light Italic" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="626.0" layoutY="308.0" mnemonicParsing="false" onAction="#onClickNotes" text="Notes" AnchorPane.bottomAnchor="26.000000000000018" AnchorPane.leftAnchor="626.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="308.0">
+            <Button layoutX="14.0" layoutY="320.0" mnemonicParsing="false" onAction="#onClickNotes" text="Notes" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="634.0" AnchorPane.topAnchor="320.0">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <TableView fx:id="nameCourses" layoutX="90.0" layoutY="80.0" prefHeight="200.0" prefWidth="189.0">
+              <columns>
+                <TableColumn fx:id="nameTable" prefWidth="188.00000762939453" text="Name" />
+                  <TableColumn fx:id="idCoursTable" prefWidth="69.33331298828125" text="id" />
+              </columns>
+            </TableView>
+            <TableView fx:id="namesStudents" layoutX="376.0" layoutY="80.0" onTouchPressed="#onClickViewStudent" prefHeight="200.0" prefWidth="265.0">
+              <columns>
+                <TableColumn fx:id="last_nameStudents" prefWidth="138.0" text="Last Name" />
+                <TableColumn fx:id="first_nameStudents" minWidth="0.0" prefWidth="125.33328247070312" text="First Name" />
+                  <TableColumn fx:id="idStudents" prefWidth="75.0" text="Id" />
+              </columns>
+            </TableView>
+            <Button layoutX="223.0" layoutY="291.0" mnemonicParsing="false" onAction="#onClickViewCours" text="Show Cours">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <TextField fx:id="idCoursShowCours" layoutX="151.0" layoutY="293.0" prefHeight="25.0" prefWidth="67.0" promptText="id cours" />
+            <TextField fx:id="idStudentShowStudent" layoutX="475.0" layoutY="292.0" prefHeight="25.0" prefWidth="67.0" promptText="id student" />
+            <Button layoutX="546.0" layoutY="291.0" mnemonicParsing="false" onAction="#onClickViewStudent" text="Show Student">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

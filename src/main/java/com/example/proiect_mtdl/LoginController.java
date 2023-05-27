@@ -30,10 +30,9 @@ public class LoginController {
     @FXML
     private TextField password_login;
 
-    DataSingleton data = DataSingleton.getInstance();
 
     @FXML
-    protected void onLoginClick(ActionEvent event) throws SQLException, IOException {
+    protected void onLoginClick(ActionEvent event) throws Exception, IOException {
 
 
         if (email_login.getText().equals("admin") && password_login.getText().equals("admin")){
@@ -55,6 +54,8 @@ public class LoginController {
 
             while (resultSet2.next()){
 
+                DatabaseConnection.getInstance().ConnectUser(email_login.getText(), password_login.getText());
+
                 if (resultSet2.getString("userType").equals("student")){
 
 
@@ -66,27 +67,14 @@ public class LoginController {
 
                 } else if (resultSet2.getString("userType").equals("teacher")) {
 
-
-//                    int id = Integer.parseInt(resultSet2.getString("id"));
-//                    String first_name = resultSet2.getString("first_name");
-//                    String last_name = resultSet2.getString("last_name");
-//                    String university = resultSet2.getString("university");
-//                    String degree = resultSet2.getString("degree");
-//
-//                    Teacher teacher = new Teacher(id, last_name, first_name, email_login.getText(), password_login.getText(), university,"teacher", degree);
-//
-//                    DataSingleton data = DataSingleton.getInstance();
-//                    data.setTeacher(teacher);
-
-
-//                    data.setEmail(email_login.getText());
-//                    stage = (Stage) email_login.getScene().getWindow();
-
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherMainPage.fxml"));
                     root = loader.load();
                     stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
                     TeacherController teacherController = loader.getController();
-                    teacherController.setNameWelcome(email_login.getText());
+                    teacherController.setNameWelcome(DatabaseConnection.getInstance().getTeacher().getFirst_name());
+                    teacherController.setCourses(DatabaseConnection.getInstance().getTeacher().getId());
+                    teacherController.setStudent(DatabaseConnection.getInstance().getTeacher().getId());
                     scene = new Scene(root);
                     stage.setTitle("Teacher Main Page");
                     stage.setScene(scene);

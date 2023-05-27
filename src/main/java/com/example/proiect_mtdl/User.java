@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class User {
 
-    private int id = 0;
+    private int id;
     private String last_name;
     private String first_name;
     private String email;
@@ -18,8 +18,14 @@ public abstract class User {
     public User() {
     }
 
-    public User(int id, String last_name, String first_name, String email, String password, String university, String userType) {
+    public User(int id, String last_name, String first_name) {
+        this.id = id;
+        this.last_name = last_name;
+        this.first_name = first_name;
+    }
 
+    public User(int id, String last_name, String first_name, String email, String password, String university, String userType) {
+        this.id = id;
         this.last_name = last_name;
         this.first_name = first_name;
         this.email = email;
@@ -34,6 +40,13 @@ public abstract class User {
         this.first_name = first_name;
         this.email = email;
         this.userType = userType;
+    }
+
+    public User(String last_name, String first_name, String email, String university) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.email = email;
+        this.university = university;
     }
 
     public int getId() {

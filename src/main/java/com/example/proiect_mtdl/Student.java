@@ -17,6 +17,20 @@ public class Student extends User{
         super(id, email, first_name, last_name, userType);
     }
 
+    public Student(int id, String last_name, String first_name) {
+        super(id, last_name, first_name);
+    }
+
+    public Student() {
+    }
+
+    public Student(String last_name, String first_name, String email, String university, int uni_year, String specialisation, String group) {
+        super(last_name, first_name, email, university);
+        this.uni_year = uni_year;
+        this.specialisation = specialisation;
+        this.group = group;
+    }
+
     public int getUni_year() {
         return uni_year;
     }

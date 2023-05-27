@@ -76,7 +76,7 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="emailManageAccount" layoutX="122.0" layoutY="52.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="emailManageAccount" layoutX="122.0" layoutY="52.0" prefHeight="26.0" prefWidth="210.0" text=" ">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -86,17 +86,17 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="nameManageAccount" layoutX="122.0" layoutY="26.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="nameManageAccount" layoutX="122.0" layoutY="26.0" prefHeight="26.0" prefWidth="210.0" text=" ">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="universityManageAccount" layoutX="122.0" layoutY="78.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="universityManageAccount" layoutX="122.0" layoutY="78.0" prefHeight="26.0" prefWidth="210.0" text=" ">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="degreeManageAccount" layoutX="122.0" layoutY="104.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="degreeManageAccount" layoutX="122.0" layoutY="104.0" prefHeight="26.0" prefWidth="210.0" text=" ">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

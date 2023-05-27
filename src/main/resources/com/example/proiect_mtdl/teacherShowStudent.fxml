@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="400.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.TeacherController">
+<BorderPane prefHeight="400.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.TeacherController">
    <top>
       <AnchorPane prefHeight="97.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="104.0" fitWidth="123.0" layoutX="91.0">
+            <ImageView fitHeight="104.0" fitWidth="123.0" layoutX="130.0">
                <image>
                   <Image url="@../../../images/logo.jpeg" />
                </image>
@@ -29,7 +28,7 @@
    <center>
       <AnchorPane prefHeight="283.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="110.0" layoutY="230.0" mnemonicParsing="false" onAction="#onClickBackViewCours" text="Remove Student">
+            <Button layoutX="135.0" layoutY="232.0" mnemonicParsing="false" onAction="#onClickRemoveStudent" text="Remove Student">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -64,32 +63,32 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="degreeManageAccount" layoutX="95.0" layoutY="31.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="nameShowStudent" layoutX="95.0" layoutY="31.0" prefHeight="26.0" prefWidth="210.0">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="degreeManageAccount1" layoutX="95.0" layoutY="57.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="emailShowStudent" layoutX="95.0" layoutY="57.0" prefHeight="26.0" prefWidth="210.0">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="degreeManageAccount11" layoutX="95.0" layoutY="83.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="universityShowStudent" layoutX="95.0" layoutY="83.0" prefHeight="26.0" prefWidth="210.0">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="degreeManageAccount111" layoutX="95.0" layoutY="109.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="specialisationShowStudent" layoutX="95.0" layoutY="109.0" prefHeight="26.0" prefWidth="210.0">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="degreeManageAccount1111" layoutX="95.0" layoutY="135.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="yearShowStudent" layoutX="95.0" layoutY="135.0" prefHeight="26.0" prefWidth="210.0">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="degreeManageAccount11111" layoutX="95.0" layoutY="161.0" prefHeight="26.0" prefWidth="210.0">
+            <Label fx:id="groupShowStudent" layoutX="95.0" layoutY="161.0" prefHeight="26.0" prefWidth="210.0">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

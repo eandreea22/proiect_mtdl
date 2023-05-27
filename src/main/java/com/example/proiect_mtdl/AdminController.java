@@ -17,8 +17,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import net.glxn.qrgen.QRCode;
-import net.glxn.qrgen.image.ImageType;
+//import net.glxn.qrgen.QRCode;
+//import net.glxn.qrgen.image.ImageType;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -507,15 +507,15 @@ public class AdminController {
     @FXML
     public void onClickShowQrCode() throws Exception{
 
-        String stringForQrCode = DatabaseConnection.getInstance().GetQrCodeModifyCours(Integer.parseInt(coursIdModifyCours.getText()));
-        ByteArrayOutputStream out = QRCode.from(stringForQrCode).to(ImageType.JPG).stream();
-
-        File f = new File("@../../../images/logo.jpeg");
-        FileOutputStream fos = new FileOutputStream(f);
-        fos.write(out.toByteArray());
-        fos.flush();
-
-        qrcodeImageModifyCours.setImage(new Image(f.getAbsolutePath()));
+//        String stringForQrCode = DatabaseConnection.getInstance().GetQrCodeModifyCours(Integer.parseInt(coursIdModifyCours.getText()));
+//        ByteArrayOutputStream out = QRCode.from(stringForQrCode).to(ImageType.JPG).stream();
+//
+//        File f = new File("@../../../images/logo.jpeg");
+//        FileOutputStream fos = new FileOutputStream(f);
+//        fos.write(out.toByteArray());
+//        fos.flush();
+//
+//        qrcodeImageModifyCours.setImage(new Image(f.getAbsolutePath()));
 
     }
 
