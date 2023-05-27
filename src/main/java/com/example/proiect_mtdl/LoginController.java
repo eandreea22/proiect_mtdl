@@ -3,21 +3,18 @@ package com.example.proiect_mtdl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class LoginController {
 
@@ -26,14 +23,15 @@ public class LoginController {
     private Scene scene;
 
     @FXML
-    private TextField email_login;
+    TextField email_login;
     @FXML
-    private TextField password_login;
+    TextField password_login;
 
 
     @FXML
-    protected void onLoginClick(ActionEvent event) throws Exception, IOException {
-
+    public void onLoginClick(ActionEvent event) throws Exception, IOException {
+        String email = getEmailValue();
+        String password = getPasswordValue();
 
         if (email_login.getText().equals("admin") && password_login.getText().equals("admin")){
             Stage stage = new Stage();
@@ -84,4 +82,19 @@ public class LoginController {
 
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    protected String getEmailValue() {
+        return email_login.getText();
+    }
+
+    protected String getPasswordValue() {
+        return password_login.getText();
+    }
 }
