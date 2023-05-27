@@ -13,44 +13,35 @@ import org.testfx.framework.junit.ApplicationTest;
 
 import static org.junit.Assert.assertNotNull;
 
-public class LoginControllerTest extends ApplicationTest {
+public class TeacherControllerTest extends ApplicationTest {
 
-    private LoginController loginController;
+    private TeacherController teacherController;
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherMainPage.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        loginController = loader.getController();
-        loginController.setStage(stage);
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        loginController.email_login = new TextField();
-        loginController.password_login = new TextField();
+        teacherController = loader.getController();
+        teacherController.setStage(stage);
     }
 
     @Test
     public void testOnLoginClickWithTeacherCredentials() {
         Platform.runLater(() -> {
-            // Set the input values for the login fields
-            loginController.email_login.setText("pandrei@fils.ro");
-            loginController.password_login.setText("test123");
 
             // Simulate the button click
             ActionEvent event = new ActionEvent();
             try {
-                loginController.onLoginClick(event);
+                teacherController.onClickManageAccount(event);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             // Verify that the teacher main page is loaded
-            Stage teacherStage = loginController.getStage();
+            Stage teacherStage = teacherController.getStage();
             assertNotNull(teacherStage);
 
         });

@@ -41,7 +41,7 @@ public class LoginController {
             stage.setScene(scene);
             stage.show();
 
-        }else{
+        }else if(email_login.getText().contains("@")){
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler","root","nutebaga");
 
             Statement statement = conn.createStatement();
@@ -78,6 +78,10 @@ public class LoginController {
                     stage.setScene(scene);
                 }
             }
+        }else{
+            // Display error message in the JavaFX interface
+            System.out.println("Email should contain @");
+            return; // Exit the method
         }
 
     }

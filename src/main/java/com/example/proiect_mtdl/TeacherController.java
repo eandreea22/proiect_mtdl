@@ -1,31 +1,21 @@
 package com.example.proiect_mtdl;
 
 import javafx.application.Platform;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.*;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import static java.sql.DriverManager.getConnection;
 
 public class TeacherController{
 
@@ -33,10 +23,9 @@ public class TeacherController{
     Stage stage;
     Scene scene;
     @FXML
-    private Label labelNameWelcome;
+    Label labelNameWelcome;
 
     public String email;
-
 
     public void setNameWelcome(String s) throws Exception{
         labelNameWelcome.setText(s);
@@ -99,9 +88,9 @@ public class TeacherController{
 
 
     @FXML
-    private Label nameShowStudent;
+    Label nameShowStudent;
     @FXML
-    private Label emailShowStudent;
+    Label emailShowStudent;
     @FXML
     private Label universityShowStudent;
     @FXML
@@ -111,7 +100,7 @@ public class TeacherController{
     @FXML
     private Label groupShowStudent;
     @FXML
-    private TextField idStudentShowStudent;
+    TextField idStudentShowStudent;
 
     public void setDataStudent(int idStudent) throws Exception{
 
@@ -373,9 +362,9 @@ public class TeacherController{
     }
 
     @FXML
-    private TextField newPasswordManageAccount;
+    TextField newPasswordManageAccount;
     @FXML
-    private TextField oldPasswordManageAccount;
+    TextField oldPasswordManageAccount;
     @FXML
     private TextField photoManageAccount;
     @FXML
@@ -426,4 +415,17 @@ public class TeacherController{
     }
 
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    String nameWelcome;
+    public String getNameWelcome() {
+        return nameWelcome;
+    }
 }
+

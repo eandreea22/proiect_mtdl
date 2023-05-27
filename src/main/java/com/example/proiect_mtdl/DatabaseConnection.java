@@ -12,7 +12,7 @@ public class DatabaseConnection {
     private Teacher teacher;
     private Student student;
 
-    private DatabaseConnection() {
+    DatabaseConnection() {
 
         try {
             this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/filsscheduler", "root", "nutebaga");
@@ -391,5 +391,4 @@ public class DatabaseConnection {
         }
 
     }
-
 }
