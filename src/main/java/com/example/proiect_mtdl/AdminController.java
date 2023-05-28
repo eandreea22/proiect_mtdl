@@ -42,7 +42,7 @@ public class AdminController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("All Courses");
+        stage.setTitle("All Accounts");
         stage.show();
 
     }
