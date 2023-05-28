@@ -2,6 +2,7 @@ package com.example.proiect_mtdl;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class DatabaseConnection {
 
@@ -11,6 +12,9 @@ public class DatabaseConnection {
 
     private Teacher teacher;
     private Student student;
+    private Cours cours;
+
+
 
     DatabaseConnection() {
 
@@ -72,6 +76,23 @@ public class DatabaseConnection {
                 "where email='" + email + "';");
     }
 
+    public void setCours(int idcours) throws Exception{
+
+        ResultSet resultSet = statement.executeQuery("select * from cours " +
+                "where id=" + idcours + ";");
+
+        Cours c = new Cours();
+        while (resultSet.next()){
+            c.setId(resultSet.getInt("id"));
+            c.setName(resultSet.getString("name"));
+            c.setPhoto(resultSet.getString("photo"));
+        }
+        this.cours = c;
+    }
+
+    public Cours getCours(){
+        return this.cours;
+    }
 
 
     public ResultSet LoadUsers() throws Exception{
@@ -305,6 +326,40 @@ public class DatabaseConnection {
         return students;
     }
 
+    public ArrayList<Student> getCoursStudents(int idcours) throws Exception{
+        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<String> firstname_student = new ArrayList<String>();
+        ArrayList<String> lastname_student = new ArrayList<String>();
+        ArrayList<Integer> idstudent = new ArrayList<Integer>();
+
+        ResultSet resultSet = statement.executeQuery("select * from coursstudents " +
+                "where idcours=" + idcours + ";");
+
+        while (resultSet.next()){
+
+            idstudent.add(resultSet.getInt("idstudent"));
+        }
+
+        for (int i =0; i<idstudent.size(); i++){
+
+            ResultSet resultSet1 = statement.executeQuery("select * from users " +
+                    "where id=" + idstudent.get(i) + ";");
+
+            while (resultSet1.next()){
+
+                lastname_student.add(resultSet1.getString("last_name") );
+                firstname_student.add(resultSet1.getString("first_name"));
+            }
+        }
+
+        for (int i=0; i<idstudent.size();i++){
+            students.add(new Student(idstudent.get(i), lastname_student.get(i), firstname_student.get(i)));
+        }
+
+
+        return students;
+    }
+
     public ArrayList<Notes> getNotes(int idUser) throws Exception{
 
         ArrayList<String> nameNotes1 = new ArrayList<String>();
@@ -326,11 +381,6 @@ public class DatabaseConnection {
         return notes;
     }
 
-    public ResultSet getCours(int idcours) throws Exception{
-
-        return statement.executeQuery("select * from cours " +
-                "where id=" + idcours + ";");
-    }
 
     public void setNote(int idUser,String content, String name) throws Exception{
 
@@ -384,11 +434,74 @@ public class DatabaseConnection {
 
         ResultSet resultSet = statement.executeQuery("select * from users " +
                 "where email='" + email + "';");
+
         while (resultSet.next()){
             int id = resultSet.getInt("id");
             statement.executeUpdate("delete from teacherstudent" +
                     " where id='" + id +"';");
+            statement.executeUpdate("delete from coursstudents" +
+                    " where id='" + id +"';");
         }
 
     }
+
+    public void addAssignment(int idcours, String name, String deadline, String demand) throws Exception{
+
+        statement.executeUpdate("insert into assignment" +
+                " (name, deadline, demand)" +
+                " values ('" + name +"','" + deadline +"','" + demand + "');");
+
+        Statement statement1 = this.conn.createStatement();
+        Statement statement2 = this.conn.createStatement();
+
+
+        ResultSet resultSet = statement1.executeQuery("select * from assignment " +
+                "where name='" + name + "' and deadline='" + deadline +
+                "' and demand='" + demand + "';");
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+
+            this.cours.getAssignments().get(this.cours.getAssignments().size()-1).setId(id);
+
+            statement2.executeUpdate("insert into coursassignment values " +
+                    "(" + this.cours.getId() + "," + id + ");");
+        }
+
+
+    }
+
+    public ArrayList<Assignment> getCoursAssignments(int idcours) throws Exception{
+
+        ArrayList<Assignment> assignments = new ArrayList<Assignment>();
+        ArrayList<Integer> idassignment = new ArrayList<Integer>();
+
+        ResultSet resultSet = statement.executeQuery("select * from coursassignment " +
+                "where idcours=" + idcours + ";");
+
+        while (resultSet.next()){
+
+            idassignment.add(resultSet.getInt("idassignment"));
+        }
+
+        for (int i =0; i<idassignment.size(); i++){
+
+            ResultSet resultSet1 = statement.executeQuery("select * from assignment " +
+                    "where id=" + idassignment.get(i) + ";");
+
+            while (resultSet1.next()){
+
+                String[] date = resultSet1.getString("deadline").split("/");
+                GregorianCalendar g = new GregorianCalendar(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
+
+                assignments.add(new Assignment(idassignment.get(i), resultSet1.getString("name"), resultSet1.getString("demand"), g ));
+
+            }
+        }
+
+
+        return assignments;
+    }
+
+
 }

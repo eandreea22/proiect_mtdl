@@ -17,7 +17,7 @@
                   <Image url="@../../../images/logo.jpeg" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickBackViewCours" text="Back">
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickBackMainPage" text="Back">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

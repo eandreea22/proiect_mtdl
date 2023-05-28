@@ -2,12 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiect_mtdl.StudentController">
    <top>
@@ -40,12 +42,36 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="78.0" layoutY="32.0" prefHeight="28.0" prefWidth="75.0" text="Courses">
+            <Label alignment="CENTER" layoutX="118.0" layoutY="32.0" prefHeight="28.0" prefWidth="75.0" text="Courses">
                <font>
                   <Font name="Calibri Light Italic" size="16.0" />
                </font>
             </Label>
             <Button mnemonicParsing="false" onAction="#onClickNotes" text="Notes" AnchorPane.bottomAnchor="26.000000000000018" AnchorPane.leftAnchor="626.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="308.0">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+            </Button>
+            <TableView layoutX="26.0" layoutY="60.0" prefHeight="200.0" prefWidth="260.0">
+              <columns>
+                <TableColumn prefWidth="191.99999618530273" text="Name" />
+                <TableColumn prefWidth="65.99995422363281" text="Id" />
+              </columns>
+            </TableView>
+            <Label alignment="CENTER" layoutX="480.0" layoutY="32.0" prefHeight="28.0" prefWidth="127.0" text="All assignments">
+               <font>
+                  <Font name="Calibri Light Italic" size="16.0" />
+               </font>
+            </Label>
+            <TableView layoutX="410.0" layoutY="60.0" prefHeight="200.0" prefWidth="268.0">
+               <columns>
+                  <TableColumn prefWidth="145.33334350585938" text="Name" />
+                  <TableColumn prefWidth="121.99993896484375" text="Deadline" />
+                  <TableColumn prefWidth="65.99995422363281" text="Id" />
+               </columns>
+            </TableView>
+            <TextField layoutX="26.0" layoutY="275.0" prefHeight="25.0" prefWidth="111.0" promptText="id cours" />
+            <Button layoutX="145.0" layoutY="274.0" mnemonicParsing="false" onAction="#onClickBackLogin" prefHeight="27.0" prefWidth="96.0" text="View Cours">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

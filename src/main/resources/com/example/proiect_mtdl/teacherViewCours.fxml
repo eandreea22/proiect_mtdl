@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -26,7 +25,7 @@
                </font>
             </Button>
             <ImageView fx:id="profilePhoto" fitHeight="71.0" fitWidth="76.0" layoutX="580.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickBackLogin" text="Back">
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickBackMainPage" text="Back">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -42,7 +41,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="553.0" layoutY="300.0" mnemonicParsing="false" onAction="#onClickBackLogin" prefHeight="35.0" prefWidth="125.0" text="Edit Cours Page">
+            <Button layoutX="553.0" layoutY="300.0" mnemonicParsing="false" onAction="#onClickEditCoursPage" prefHeight="35.0" prefWidth="125.0" text="Edit Cours Page">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -52,19 +51,12 @@
                   <Font name="Calibri Light Italic" size="16.0" />
                </font>
             </Label>
-            <ListView layoutX="452.0" layoutY="43.0" prefHeight="231.0" prefWidth="234.0" />
-            <TableView layoutX="21.0" layoutY="43.0" prefHeight="200.0" prefWidth="223.0">
-              <columns>
-                <TableColumn prefWidth="106.66665267944336" text="Name" />
-                <TableColumn prefWidth="115.3333485921224" text="DeadLine" />
-              </columns>
-            </TableView>
-            <Label alignment="CENTER" layoutX="62.0" layoutY="12.0" prefHeight="31.0" prefWidth="127.0" text="Assigements">
+            <Label alignment="CENTER" layoutX="62.0" layoutY="12.0" prefHeight="31.0" prefWidth="127.0" text="Assignments">
                <font>
                   <Font name="Calibri Light" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="133.0" layoutY="247.0" mnemonicParsing="false" onAction="#onClickBackLogin" text="Load Assigments">
+            <Button layoutX="133.0" layoutY="247.0" mnemonicParsing="false" onAction="#onClickBackLogin" text="Load Assigments" visible="false">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -75,6 +67,19 @@
                   <Font name="Calibri Light" size="14.0" />
                </font>
             </Button>
+            <TableView fx:id="studentsViewCours" layoutX="454.0" layoutY="47.0" prefHeight="200.0" prefWidth="229.0">
+              <columns>
+                <TableColumn fx:id="last_nameStudentViewCours" prefWidth="143.33334350585938" text="Last Name" />
+                  <TableColumn fx:id="first_nameStudentViewCours" prefWidth="213.33331298828125" text="First Name" />
+                  <TableColumn fx:id="idStudentViewCours" prefWidth="118.66671752929688" text="Id student" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tableAssignment" layoutX="21.0" layoutY="43.0" prefHeight="200.0" prefWidth="223.0">
+              <columns>
+                <TableColumn fx:id="tableNameAssignment" prefWidth="106.66665267944336" text="Name" />
+                <TableColumn fx:id="tableDeadlineAssignment" prefWidth="115.3333485921224" text="DeadLine" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </center>

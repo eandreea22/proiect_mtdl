@@ -507,10 +507,11 @@ public class AdminController {
     @FXML
     public void onClickShowQrCode() throws Exception{
 
+//
 //        String stringForQrCode = DatabaseConnection.getInstance().GetQrCodeModifyCours(Integer.parseInt(coursIdModifyCours.getText()));
 //        ByteArrayOutputStream out = QRCode.from(stringForQrCode).to(ImageType.JPG).stream();
 //
-//        File f = new File("@../../../images/logo.jpeg");
+//        File f = new File("@../../../images/qrcode.jpg");
 //        FileOutputStream fos = new FileOutputStream(f);
 //        fos.write(out.toByteArray());
 //        fos.flush();
@@ -518,6 +519,4 @@ public class AdminController {
 //        qrcodeImageModifyCours.setImage(new Image(f.getAbsolutePath()));
 
     }
-
-
 }

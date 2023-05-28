@@ -29,12 +29,12 @@ public class StudentController extends TeacherController{
     @FXML
     public void onClickManageAccount(ActionEvent event) throws IOException{
 
-        Parent root = FXMLLoader.load(getClass().getResource("manageAccount.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("studentmanageAccount.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Manage Account");
         stage.show();
-        //emailManageAccount.setText(data.getTeacher().getEmail());
+
     }
 }

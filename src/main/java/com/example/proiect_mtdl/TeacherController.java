@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class TeacherController{
 
@@ -130,23 +133,72 @@ public class TeacherController{
         stage.show();
     }
 
-    public void setDataCours() throws Exception{
+    @FXML
+    private Label nameViewCours;
+    @FXML
+    private TableView studentsViewCours;
+    @FXML
+    private TableColumn idStudentViewCours;
+    @FXML
+    private TableColumn first_nameStudentViewCours;
+    @FXML
+    private TableColumn last_nameStudentViewCours;
 
+    @FXML
+    private TableView tableAssignment;
+    @FXML
+    private TableColumn tableNameAssignment;
+    @FXML
+    private TableColumn tableDeadlineAssignment;
+
+    public void setDataViewCours() throws Exception{
+        nameViewCours.setText(DatabaseConnection.getInstance().getCours().getName());
+
+        ArrayList<Student> students = DatabaseConnection.getInstance().getCoursStudents(DatabaseConnection.getInstance().getCours().getId());
+        ObservableList<Student> students1 = FXCollections.observableArrayList(students);
+
+
+        first_nameStudentViewCours.setCellValueFactory(
+                new PropertyValueFactory<Student, String>("first_name")
+        );
+        last_nameStudentViewCours.setCellValueFactory(
+                new PropertyValueFactory<Student, String>("last_name")
+        );
+        idStudentViewCours.setCellValueFactory(
+                new PropertyValueFactory<Student, Integer>("id")
+        );
+
+        studentsViewCours.setItems(students1);
+        studentsViewCours.refresh();
+
+
+        ArrayList<Assignment> assignments = DatabaseConnection.getInstance().getCoursAssignments(DatabaseConnection.getInstance().getCours().getId());
+        ObservableList<Assignment> assignments1 = FXCollections.observableArrayList(assignments);
+
+        tableNameAssignment.setCellValueFactory(
+                new PropertyValueFactory<Assignment, String>("name")
+        );
+        tableDeadlineAssignment.setCellValueFactory(
+                new PropertyValueFactory<Assignment, Date>("deadline")
+        );
+        tableAssignment.setItems(assignments1);
+        tableAssignment.refresh();
     }
 
+    @FXML
+    private TextField idCoursShowCours;
     public void onClickViewCours(ActionEvent event) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherViewCours.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
+        DatabaseConnection.getInstance().setCours(Integer.parseInt(idCoursShowCours.getText()));
         TeacherController teacherController = loader.getController();
-
-        teacherController.setDataStudent(Integer.parseInt(idStudentShowStudent.getText()));
-
+        teacherController.setDataViewCours();
 
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Student");
+        stage.setTitle("Cours Page " + DatabaseConnection.getInstance().getCours().getName());
         stage.show();
     }
 
@@ -194,7 +246,6 @@ public class TeacherController{
         degreeManageAccount.setText("   " + teacher.getDegree());
 
     }
-
 
 
     public void onClickManageAccount(ActionEvent event) throws IOException, Exception{
@@ -397,23 +448,6 @@ public class TeacherController{
         System.exit(0);
     }
 
-    // notes
-
-    // view cours
-
-    // show student
-    @FXML
-    public void onClickBackViewCours(ActionEvent event) throws IOException{
-
-        Parent root = FXMLLoader.load(getClass().getResource("teacherViewCours.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Cours Page");
-        stage.show();
-
-    }
-
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -427,5 +461,75 @@ public class TeacherController{
     public String getNameWelcome() {
         return nameWelcome;
     }
+
+    @FXML
+    public void onClickEditCoursPage(ActionEvent event) throws Exception{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacherEditCoursPage.fxml"));
+        root = loader.load();
+
+//        TeacherController teacherController = loader.getController();
+//        teacherController.setNameWelcome(DatabaseConnection.getInstance().getTeacher().getFirst_name());
+//        teacherController.setStudent(DatabaseConnection.getInstance().getTeacher().getId());
+//        teacherController.setCourses(DatabaseConnection.getInstance().getTeacher().getId());
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+
+
+        stage.setTitle("Edit Cours " + DatabaseConnection.getInstance().getCours().getName());
+        stage.show();
+    }
+
+
+    @FXML
+    private TextField newCoursName;
+
+    @FXML
+    public void onClickModifyCoursName() throws Exception{
+        DatabaseConnection.getInstance().getCours().setName(newCoursName.getText());
+        DatabaseConnection.getInstance().ModifyNameCours(newCoursName.getText(), DatabaseConnection.getInstance().getCours().getId());
+    }
+
+    @FXML
+    private TextField newCoursPhoto;
+
+    @FXML
+    public void onClickModifyCoursPhoto() throws Exception{
+        DatabaseConnection.getInstance().getCours().setPhoto(newCoursPhoto.getText());
+        DatabaseConnection.getInstance().ModifyPhotoCours(newCoursPhoto.getText(), DatabaseConnection.getInstance().getCours().getId());
+    }
+
+    @FXML
+    private TextField newQrCode;
+
+    @FXML
+    public void onClickModifyQrCode() throws Exception{
+        DatabaseConnection.getInstance().ModifyQrCodeCours(newQrCode.getText(), DatabaseConnection.getInstance().getCours().getId());
+    }
+
+    @FXML
+    private TextField nameAssignment;
+    @FXML
+    private TextArea demandAssignment;
+    @FXML
+    private TextField deadlineAssignment;
+    @FXML
+    public void onClickAddAssignment() throws Exception{
+        String[] date = deadlineAssignment.getText().split("/");
+        GregorianCalendar g = new GregorianCalendar(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
+
+        DatabaseConnection.getInstance().getCours().addTache
+                (new Assignment(nameAssignment.getText(),g, demandAssignment.getText()));
+        DatabaseConnection.getInstance().addAssignment(DatabaseConnection.getInstance().getCours().getId(), nameAssignment.getText(), deadlineAssignment.getText(), demandAssignment.getText());
+        nameAssignment.clear();
+        demandAssignment.clear();
+        deadlineAssignment.clear();
+    }
+
+
+
+
 }
 
